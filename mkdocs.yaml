@@ -18,6 +18,8 @@ theme:
     text: Montserrat
   icon:
     repo: fontawesome/brands/github
+    edit: material/pencil 
+    view: material/eye
   features:
     - navigation.instant
     - navigation.tracking
@@ -28,6 +30,7 @@ theme:
     - navigation.indexes
     - navigation.top
     - content.code.annotate
+    - content.action.edit
 
 extra:
   social:
