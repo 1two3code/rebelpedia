@@ -1,0 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RouteConstruct = void 0;
+const aws_cdk_lib_1 = require("aws-cdk-lib");
+const constructs_1 = require("constructs");
+const aws_route53_1 = require("aws-cdk-lib/aws-route53");
+const aws_certificatemanager_1 = require("aws-cdk-lib/aws-certificatemanager");
+class RouteConstruct extends constructs_1.Construct {
+    constructor(scope, id, props) {
+        super(scope, id);
+        const { domainName, subDomains } = props;
+        this.zone = aws_route53_1.HostedZone.fromLookup(this, 'Zone', {
+            domainName: domainName,
+        });
+        this.certificate = new aws_certificatemanager_1.DnsValidatedCertificate(this, 'SiteCertificate', {
+            domainName,
+            subjectAlternativeNames: subDomains.map(sub => `${sub}.${domainName}`),
+            hostedZone: this.zone,
+            region: 'us-east-1',
+        });
+        new aws_cdk_lib_1.CfnOutput(this, 'Certificate', { value: this.certificate.certificateArn });
+    }
+}
+exports.RouteConstruct = RouteConstruct;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm91dGUtY29uc3RydWN0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsicm91dGUtY29uc3RydWN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLDZDQUF3QztBQUN4QywyQ0FBdUM7QUFDdkMseURBQWtFO0FBQ2xFLCtFQUE2RTtBQU83RSxNQUFhLGNBQWUsU0FBUSxzQkFBUztJQUkzQyxZQUFZLEtBQWdCLEVBQUUsRUFBVSxFQUFFLEtBQTBCO1FBQ2xFLEtBQUssQ0FBQyxLQUFLLEVBQUUsRUFBRSxDQUFDLENBQUM7UUFDakIsTUFBTSxFQUFFLFVBQVUsRUFBRSxVQUFVLEVBQUUsR0FBRyxLQUFLLENBQUM7UUFFekMsSUFBSSxDQUFDLElBQUksR0FBRyx3QkFBVSxDQUFDLFVBQVUsQ0FBQyxJQUFJLEVBQUUsTUFBTSxFQUFFO1lBQzlDLFVBQVUsRUFBRSxVQUFVO1NBQ3ZCLENBQUMsQ0FBQztRQUdILElBQUksQ0FBQyxXQUFXLEdBQUcsSUFBSSxnREFBdUIsQ0FDNUMsSUFBSSxFQUNKLGlCQUFpQixFQUNqQjtZQUNFLFVBQVU7WUFDVix1QkFBdUIsRUFBRSxVQUFVLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyxHQUFHLElBQUksVUFBVSxFQUFFLENBQUM7WUFDdEUsVUFBVSxFQUFFLElBQUksQ0FBQyxJQUFJO1lBQ3JCLE1BQU0sRUFBRSxXQUFXO1NBQ3BCLENBQ0YsQ0FBQztRQUVGLElBQUksdUJBQVMsQ0FBQyxJQUFJLEVBQUUsYUFBYSxFQUFFLEVBQUUsS0FBSyxFQUFFLElBQUksQ0FBQyxXQUFXLENBQUMsY0FBYyxFQUFFLENBQUMsQ0FBQztJQUNqRixDQUFDO0NBQ0Y7QUExQkQsd0NBMEJDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ2ZuT3V0cHV0IH0gZnJvbSAnYXdzLWNkay1saWInO1xuaW1wb3J0IHsgQ29uc3RydWN0IH0gZnJvbSAnY29uc3RydWN0cyc7XG5pbXBvcnQgeyBJSG9zdGVkWm9uZSwgSG9zdGVkWm9uZSB9IGZyb20gJ2F3cy1jZGstbGliL2F3cy1yb3V0ZTUzJztcbmltcG9ydCB7IERuc1ZhbGlkYXRlZENlcnRpZmljYXRlIH0gZnJvbSAnYXdzLWNkay1saWIvYXdzLWNlcnRpZmljYXRlbWFuYWdlcic7XG5cbmludGVyZmFjZSBSb3V0ZUNvbnN0cnVjdFByb3BzIHtcbiAgZG9tYWluTmFtZTogc3RyaW5nO1xuICBzdWJEb21haW5zOiBzdHJpbmdbXTtcbn1cblxuZXhwb3J0IGNsYXNzIFJvdXRlQ29uc3RydWN0IGV4dGVuZHMgQ29uc3RydWN0IHtcbiAgcHVibGljIHJlYWRvbmx5IHpvbmU6IElIb3N0ZWRab25lO1xuICBwdWJsaWMgcmVhZG9ubHkgY2VydGlmaWNhdGU6IERuc1ZhbGlkYXRlZENlcnRpZmljYXRlO1xuXG4gIGNvbnN0cnVjdG9yKHNjb3BlOiBDb25zdHJ1Y3QsIGlkOiBzdHJpbmcsIHByb3BzOiBSb3V0ZUNvbnN0cnVjdFByb3BzKSB7XG4gICAgc3VwZXIoc2NvcGUsIGlkKTtcbiAgICBjb25zdCB7IGRvbWFpbk5hbWUsIHN1YkRvbWFpbnMgfSA9IHByb3BzO1xuXG4gICAgdGhpcy56b25lID0gSG9zdGVkWm9uZS5mcm9tTG9va3VwKHRoaXMsICdab25lJywge1xuICAgICAgZG9tYWluTmFtZTogZG9tYWluTmFtZSxcbiAgICB9KTtcbiAgICAgXG4gICAgXG4gICAgdGhpcy5jZXJ0aWZpY2F0ZSA9IG5ldyBEbnNWYWxpZGF0ZWRDZXJ0aWZpY2F0ZShcbiAgICAgIHRoaXMsXG4gICAgICAnU2l0ZUNlcnRpZmljYXRlJyxcbiAgICAgIHsgXG4gICAgICAgIGRvbWFpbk5hbWUsXG4gICAgICAgIHN1YmplY3RBbHRlcm5hdGl2ZU5hbWVzOiBzdWJEb21haW5zLm1hcChzdWIgPT4gYCR7c3VifS4ke2RvbWFpbk5hbWV9YCksXG4gICAgICAgIGhvc3RlZFpvbmU6IHRoaXMuem9uZSxcbiAgICAgICAgcmVnaW9uOiAndXMtZWFzdC0xJywgLy8gY2xvdWRmcm9udCBjZXJ0cyBhbHdheXMgdXMtZWFzdC0xXG4gICAgICB9LFxuICAgICk7XG4gICAgXG4gICAgbmV3IENmbk91dHB1dCh0aGlzLCAnQ2VydGlmaWNhdGUnLCB7IHZhbHVlOiB0aGlzLmNlcnRpZmljYXRlLmNlcnRpZmljYXRlQXJuIH0pO1xuICB9XG59ICJdfQ==

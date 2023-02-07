@@ -1,0 +1,26 @@
+{
+  "name": "wis",
+  "version": "1.0.0",
+  "description": "World in Shamblers Monorepo",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build-docs": "mkdocs build",
+    "serve-docs": "mkdocs serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1two3code/rebelpedia.git"
+  },
+  "keywords": [],
+  "author": "1two3code",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/1two3code/rebelpedia/issues"
+  },
+  "homepage": "https://github.com/1two3code-rebelpedia#readme",
+  "devDependencies": {
+    "http-server": "^14.1.0"
+  }
+}

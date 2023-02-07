@@ -1,0 +1,6 @@
+mkdocs
+mkdocs-material
+mkdocs-git-revision-date-plugin
+mkdocs-print-site-plugin
+mkdocs-minify-plugin
+mkdocs-exclude-search

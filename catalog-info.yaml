@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rebelpedia
+  namespace: capslock.gg
+  description: 'Community docs for rebelbots.com'
+  annotations:
+    github.com/project-slug: 1two3code/rebelpedia
+    # github.com/team-slug: 1two3code/rebelbots
+    backstage.io/techdocs-ref: dir:.
+    
+spec:
+  type: document
+  lifecycle: experimental
+  owner: 1two3code

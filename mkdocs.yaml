@@ -1,0 +1,112 @@
+site_name: Rebelpedia
+site_author: Rebelpedia
+repo_name: 1two3code/rebelpedia
+repo_url: https://github.com/1two3code/rebelpedia/
+edit_uri: https://github.com/1two3code/rebelpedia/edit/main/docs/
+copyright: Copyright &copy; 2022 - 2023 Rebelpedia
+
+theme:
+  name: material
+  custom_dir: docs/assets/overrides
+  logo: assets/huni-head.svg
+  favicon: assets/favicon.ico
+  palette:
+    scheme: slate
+    primary: orange
+    accent: yellow
+  font:
+    text: Montserrat
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - search.suggest
+    - search.share
+    - navigation.tabs
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - content.code.annotate
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/1two3code
+    - icon: fontawesome/brands/github
+      link: https://github.com/1two3code/rebelpedia
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/rebelbots
+  generator: false
+
+extra_css:
+  - assets/css/admonition-types.css
+
+plugins:
+  - search
+  - git-revision-date
+  - tags:
+      tags_file: tags.md
+  - minify:
+      minify_html: true
+  - exclude-search:
+      exclude:
+        - tags.md
+        # - page.md#section
+        # - directory/*
+        # - /*/page.md
+  - print-site
+
+markdown_extensions:
+  - meta
+  - abbr
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - pymdownx.critic
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.snippets
+  - pymdownx.tasklist
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Rebelpedia:
+      - wiki/index.md
+  - Contributing:
+      - dev/index.md
+      - MkDocs Cheat Sheet:
+          - dev/mkdocs/index.md
+          - Admonitions: dev/mkdocs/admonitions.md
+          - Buttons: dev/mkdocs/buttons.md
+          - Code blocks: dev/mkdocs/code-blocks.md
+          - Content tabs: dev/mkdocs/content-tabs.md
+          - Data tables: dev/mkdocs/data-tables.md
+          - Diagrams: dev/mkdocs/diagrams.md
+          - Footnotes: dev/mkdocs/footnotes.md
+          - Formatting: dev/mkdocs/formatting.md
+          - Icons, Emojis: dev/mkdocs/icons-emojis.md
+          - Images: dev/mkdocs/images.md
+          - Lists: dev/mkdocs/lists.md
+          - Tooltips: dev/mkdocs/tooltips.md
+  # - Business:
+  #   - business/index.md
+  # - Community:
+  #   - community/index.md
