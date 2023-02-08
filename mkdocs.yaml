@@ -55,6 +55,7 @@ plugins:
   - exclude-search:
       exclude:
         - tags.md
+        - unpublished/*
         # - page.md#section
         # - directory/*
         # - /*/page.md
