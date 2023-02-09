@@ -1,0 +1,1531 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/networks/{chainId}/nfts/transfers": {
+      "get": {
+        "operationId": "NftsController_getTransfersfromBlockToBlock",
+        "summary": "Gets all transfers from block to block",
+        "description": "Gets transfers from a block to block.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fromBlock",
+            "required": true,
+            "in": "query",
+            "example": "16026179",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "toBlock",
+            "required": true,
+            "in": "query",
+            "example": "16026190",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransfersModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Transfers"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/block/transfers": {
+      "get": {
+        "operationId": "NftsController_getTransfersByBlockNumberOrHash",
+        "summary": "Gets all transfers By block number or hash",
+        "description": "Gets transfers by block number or block hash.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "blockHashNumber",
+            "required": true,
+            "in": "query",
+            "example": "16026179",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransfersModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Transfers"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/search": {
+      "get": {
+        "operationId": "NftsController_searchNfts",
+        "summary": "Search for Nfts given a string",
+        "description": "Search for Nfts given a string",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "required": true,
+            "in": "query",
+            "example": "Cool Cats",
+            "description": "Query to search with",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchNftModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Metadata"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}": {
+      "get": {
+        "operationId": "NftsController_getCollectionMetadata",
+        "summary": "Gets collection level metadata",
+        "description": "Gets the contract level metadata for a given contract address.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0xa9cb55d05d3351dcd02dd5dc4614e764ce3e1d6e",
+            "description": "Contract address",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Collections"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}/tokens": {
+      "get": {
+        "operationId": "NftsController_getNftsForCollection",
+        "summary": "Gets all NFTs with metadata in a specific collection",
+        "description": "Gets all NFTs for a given contract address (including metadata).",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0x1A92f7381B9F03921564a437210bB9396471050C",
+            "description": "Contract address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Collections"
+        ]
+      }
+    },
+    "/networks/{chainId}/accounts/{walletAddress}/assets/collections": {
+      "get": {
+        "operationId": "NftsController_getCollectionsByWalletAddress",
+        "summary": "Gets collections by wallet address",
+        "description": "Gets NFT collections owned by a given wallet address.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "walletAddress",
+            "required": true,
+            "in": "path",
+            "example": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "description": "Wallet address of the owner of Nfts in collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionByWalletModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Collections"
+        ]
+      }
+    },
+    "/networks/{chainId}/accounts/{walletAddress}/assets/nfts": {
+      "get": {
+        "operationId": "NftsController_getNftsForAddress",
+        "summary": "Gets all NFTs with metadata currently owned by a given wallet address",
+        "description": "Gets all NFTs owned by a given wallet address.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "walletAddress",
+            "required": true,
+            "in": "path",
+            "example": "0x0a267cf51ef038fc00e71801f5a524aec06e4f07",
+            "description": "Wallet address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Metadata"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}/tokens/{tokenId}": {
+      "get": {
+        "operationId": "NftsController_getNftMetadata",
+        "summary": "Gets NFT metadata",
+        "description": "Gets NFT data for the given NFT token ID and contract address.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0xa9cb55d05d3351dcd02dd5dc4614e764ce3e1d6e",
+            "description": "Contract address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenId",
+            "required": true,
+            "in": "path",
+            "example": "7421",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resyncMetadata",
+            "required": false,
+            "in": "query",
+            "example": "false",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetadataModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Metadata"
+        ]
+      }
+    },
+    "/networks/{chainId}/accounts/{walletAddress}/assets/transfers": {
+      "get": {
+        "operationId": "NftsController_getTransferForAddress",
+        "summary": "Gets all NFT transfers by wallet address",
+        "description": "Gets transfers of NFTs for a given wallet address",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "walletAddress",
+            "required": true,
+            "in": "path",
+            "example": "0x0a267cf51ef038fc00e71801f5a524aec06e4f07",
+            "description": "Wallet address of the sender/recipient of the transfers",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransfersModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Transfers"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}/tokens/{tokenId}/transfers": {
+      "get": {
+        "operationId": "NftsController_getTransfersByTokenId",
+        "summary": "Gets all transfers for an NFT",
+        "description": "Gets transfers of an NFT by contract address and token ID.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0x1A92f7381B9F03921564a437210bB9396471050C",
+            "description": "Contract address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenId",
+            "required": true,
+            "in": "path",
+            "example": "7421",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransfersModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Transfers"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}/transfers": {
+      "get": {
+        "operationId": "NftsController_getTransfersByTokenAddress",
+        "summary": "Gets all transfers By contract address",
+        "description": "Gets transfers by contract address.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0x1A92f7381B9F03921564a437210bB9396471050C",
+            "description": "Contract address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransfersModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Transfers"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}/owners": {
+      "get": {
+        "operationId": "NftsController_getOwnersByContract",
+        "summary": "Gets NFT owners by contract address",
+        "description": " Gets NFT owners given a token address",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0x1A92f7381B9F03921564a437210bB9396471050C",
+            "description": "Contract address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnersModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Ownership"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}/{tokenId}/owners": {
+      "get": {
+        "operationId": "NftsController_getOwnersByTokenId",
+        "summary": "Gets NFT owners by contract address and tokenId",
+        "description": "Gets NFT owners for a specific token address and a tokenId",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0x1A92f7381B9F03921564a437210bB9396471050C",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenId",
+            "required": true,
+            "in": "path",
+            "example": "0",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnersModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Ownership"
+        ]
+      }
+    },
+    "/networks/{chainId}/nfts/{tokenAddress}/tradePrice": {
+      "get": {
+        "operationId": "NftsController_getTradePrice",
+        "summary": "Gets the lowest ETH based price for the contract.",
+        "parameters": [
+          {
+            "name": "chainId",
+            "required": true,
+            "in": "path",
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenAddress",
+            "required": true,
+            "in": "path",
+            "example": "0xa9cb55d05d3351dcd02dd5dc4614e764ce3e1d6e",
+            "description": "Contract address",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradePriceModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "tags": [
+          "Market data"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "NFT API Infura",
+    "description": "Query NFT data using Infura Nft Api 🚀",
+    "version": "0.0.1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "https://nft.api.infura.io"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "TransfersResultsModel": {
+        "type": "object",
+        "properties": {
+          "tokenAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x082903f4e94c5e10a2b116a4284940a36afaed63"
+          },
+          "tokenId": {
+            "type": "string",
+            "readOnly": true,
+            "example": "3784"
+          },
+          "fromAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x4f3a17060f14a28a1b706be652879d9aea4a83c2"
+          },
+          "toAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x0a267cf51ef038fc00e71801f5a524aec06e4f07"
+          },
+          "contractType": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ERC1155"
+          },
+          "price": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0"
+          },
+          "quantity": {
+            "type": "string",
+            "readOnly": true,
+            "example": "1"
+          },
+          "blockNumber": {
+            "type": "string",
+            "readOnly": true,
+            "example": "14221791"
+          },
+          "blockTimestamp": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2022-02-17T05:37:06.000Z"
+          },
+          "blockHash": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x75cf7d327e259b10881cc3b66a4aad56eb2ab4163cc77a6c535123938aa87b5f"
+          },
+          "transactionHash": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x97af3d5fe2951a3667dc9b465eb7253682e08d7ec23759722db1732fa9583468"
+          },
+          "transactionType": {
+            "type": "string",
+            "readOnly": true,
+            "example": ""
+          }
+        },
+        "required": [
+          "tokenAddress",
+          "tokenId",
+          "fromAddress",
+          "toAddress",
+          "contractType",
+          "price",
+          "quantity",
+          "blockNumber",
+          "blockTimestamp",
+          "blockHash",
+          "transactionHash",
+          "transactionType"
+        ]
+      },
+      "TransfersModel": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageNumber": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageSize": {
+            "type": "number",
+            "readOnly": true,
+            "example": 100
+          },
+          "network": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ETHEREUM",
+            "enum": [
+              "ETHEREUM",
+              "GOERLI",
+              "SEPOLIA",
+              "BSC",
+              "POLYGON",
+              "MUMBAI",
+              "BSC TESTNET",
+              "AVALANCHE",
+              "AVALANCHE TESTNET",
+              "FANTOM",
+              "CRONOS",
+              "CRONOS TESTNET",
+              "PALM",
+              "ARBITRUM"
+            ]
+          },
+          "cursor": {
+            "type": "string",
+            "readOnly": true
+          },
+          "account": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x0a267cf51ef038fc00e71801f5a524aec06e4f07"
+          },
+          "transfers": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransfersResultsModel"
+            }
+          }
+        },
+        "required": [
+          "total",
+          "pageNumber",
+          "pageSize",
+          "network",
+          "cursor",
+          "account",
+          "transfers"
+        ]
+      },
+      "SearchNftResult": {
+        "type": "object",
+        "properties": {
+          "tokenId": {
+            "type": "string",
+            "readOnly": true,
+            "example": "3784"
+          },
+          "tokenAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x082903f4e94c5e10a2b116a4284940a36afaed63"
+          },
+          "metadata": {
+            "type": "string",
+            "readOnly": true,
+            "example": "{\"image\":\"ipfs://QmQTquMHyYcBaXCS7bZccESzF2CoACtox9TmhRq38XJ6ey\",\"attributes\":[{\"trait_type\":\"Eyes\",\"value\":\"Sunglasses\"},{\"trait_type\":\"Background\",\"value\":\"Aquamarine\"},{\"trait_type\":\"Hat\",\"value\":\"Seaman's Hat\"},{\"trait_type\":\"Mouth\",\"value\":\"Rage\"},{\"trait_type\":\"Fur\",\"value\":\"Pink\"},{\"trait_type\":\"Clothes\",\"value\":\"Bandolier\"}]}"
+          },
+          "contractType": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ERC1155"
+          },
+          "tokenHash": {
+            "type": "string",
+            "readOnly": true,
+            "example": "003d3b164bf215e95871a094416622d2"
+          },
+          "minterAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x3b66c992860abd1ec94b917e222dca78ad55032f"
+          },
+          "blockNumberMinted": {
+            "type": "string",
+            "readOnly": true,
+            "example": "12347180"
+          },
+          "transactionMinted": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x3b2da3a735babcb4fa12ca2f5f1a799f2344ce9042ea03716e554502c65aea0e"
+          },
+          "createdAt": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2017-12-04T09:14:19.000Z"
+          }
+        },
+        "required": [
+          "tokenId",
+          "tokenAddress",
+          "metadata",
+          "contractType",
+          "tokenHash",
+          "minterAddress",
+          "blockNumberMinted",
+          "transactionMinted",
+          "createdAt"
+        ]
+      },
+      "SearchNftModel": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageNumber": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageSize": {
+            "type": "number",
+            "readOnly": true,
+            "example": 100
+          },
+          "network": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ETHEREUM",
+            "enum": [
+              "ETHEREUM",
+              "GOERLI",
+              "SEPOLIA",
+              "BSC",
+              "POLYGON",
+              "MUMBAI",
+              "BSC TESTNET",
+              "AVALANCHE",
+              "AVALANCHE TESTNET",
+              "FANTOM",
+              "CRONOS",
+              "CRONOS TESTNET",
+              "PALM",
+              "ARBITRUM"
+            ]
+          },
+          "cursor": {
+            "type": "string",
+            "readOnly": true
+          },
+          "nfts": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchNftResult"
+            }
+          }
+        },
+        "required": [
+          "total",
+          "pageNumber",
+          "pageSize",
+          "network",
+          "cursor",
+          "nfts"
+        ]
+      },
+      "CollectionModel": {
+        "type": "object",
+        "properties": {
+          "contract": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0xa9cb55d05d3351dcd02dd5dc4614e764ce3e1d6e"
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "example": "My Crypto NFT Project"
+          },
+          "symbol": {
+            "type": "string",
+            "readOnly": true,
+            "example": "CNSYS"
+          },
+          "tokenType": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ERC-721"
+          }
+        },
+        "required": [
+          "contract",
+          "name",
+          "symbol",
+          "tokenType"
+        ]
+      },
+      "AssetsModel": {
+        "type": "object",
+        "properties": {
+          "contract": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x8e04b34166612e73e8f8b7d7a5ddb6ea2895b4b5"
+          },
+          "tokenId": {
+            "type": "string",
+            "readOnly": true,
+            "example": "3545"
+          },
+          "supply": {
+            "type": "string",
+            "readOnly": true,
+            "example": "1"
+          },
+          "type": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ERC721"
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "contract",
+          "tokenId",
+          "supply",
+          "type"
+        ]
+      },
+      "NftModel": {
+        "type": "object",
+        "properties": {
+          "pageNumber": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageSize": {
+            "type": "number",
+            "readOnly": true,
+            "example": 100
+          },
+          "network": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ETHEREUM",
+            "enum": [
+              "ETHEREUM",
+              "GOERLI",
+              "SEPOLIA",
+              "BSC",
+              "POLYGON",
+              "MUMBAI",
+              "BSC TESTNET",
+              "AVALANCHE",
+              "AVALANCHE TESTNET",
+              "FANTOM",
+              "CRONOS",
+              "CRONOS TESTNET",
+              "PALM",
+              "ARBITRUM"
+            ]
+          },
+          "total": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "account": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x0a267cf51ef038fc00e71801f5a524aec06e4f07"
+          },
+          "cursor": {
+            "type": "string",
+            "readOnly": true
+          },
+          "assets": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetsModel"
+            }
+          }
+        },
+        "required": [
+          "pageNumber",
+          "pageSize",
+          "network",
+          "total",
+          "account",
+          "cursor",
+          "assets"
+        ]
+      },
+      "CollectionByWalletModel": {
+        "type": "object",
+        "properties": {
+          "pageNumber": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageSize": {
+            "type": "number",
+            "readOnly": true,
+            "example": 100
+          },
+          "network": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ETHEREUM",
+            "enum": [
+              "ETHEREUM",
+              "GOERLI",
+              "SEPOLIA",
+              "BSC",
+              "POLYGON",
+              "MUMBAI",
+              "BSC TESTNET",
+              "AVALANCHE",
+              "AVALANCHE TESTNET",
+              "FANTOM",
+              "CRONOS",
+              "CRONOS TESTNET",
+              "PALM",
+              "ARBITRUM"
+            ]
+          },
+          "cursor": {
+            "type": "string",
+            "readOnly": true
+          },
+          "total": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "account": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x0a267cf51ef038fc00e71801f5a524aec06e4f07"
+          },
+          "collections": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionModel"
+            }
+          }
+        },
+        "required": [
+          "pageNumber",
+          "pageSize",
+          "network",
+          "cursor",
+          "total",
+          "account",
+          "collections"
+        ]
+      },
+      "MetadataModel": {
+        "type": "object",
+        "properties": {
+          "contract": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0xa9cb55d05d3351dcd02dd5dc4614e764ce3e1d6e"
+          },
+          "tokenId": {
+            "type": "string",
+            "readOnly": true,
+            "example": 1
+          },
+          "metadata": {
+            "type": "object",
+            "readOnly": true,
+            "example": {
+              "name": "Washington #7421",
+              "description": "WeMint Cash First Edition: Washington #7421",
+              "attributes": []
+            }
+          }
+        },
+        "required": [
+          "contract",
+          "tokenId",
+          "metadata"
+        ]
+      },
+      "OwnersResultModel": {
+        "type": "object",
+        "properties": {
+          "tokenAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x082903f4e94c5e10a2b116a4284940a36afaed63"
+          },
+          "tokenId": {
+            "type": "string",
+            "readOnly": true,
+            "example": "3784"
+          },
+          "amount": {
+            "type": "string",
+            "readOnly": true,
+            "example": "1"
+          },
+          "ownerOf": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x8252df1d8b29057d1afe3062bf5a64d503152bc8"
+          },
+          "tokenHash": {
+            "type": "string",
+            "readOnly": true,
+            "example": "003d3b164bf215e95871a094416622d2"
+          },
+          "blockNumberMinted": {
+            "type": "string",
+            "readOnly": true,
+            "example": "12347180"
+          },
+          "blockNumber": {
+            "type": "string",
+            "readOnly": true,
+            "example": "15839662"
+          },
+          "contractType": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ERC1155"
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "example": "BoredApeYachtClub"
+          },
+          "symbol": {
+            "type": "string",
+            "readOnly": true,
+            "example": "BAYC"
+          },
+          "metadata": {
+            "type": "string",
+            "readOnly": true,
+            "example": "{\"image\":\"ipfs://QmQTquMHyYcBaXCS7bZccESzF2CoACtox9TmhRq38XJ6ey\",\"attributes\":[{\"trait_type\":\"Eyes\",\"value\":\"Sunglasses\"},{\"trait_type\":\"Background\",\"value\":\"Aquamarine\"},{\"trait_type\":\"Hat\",\"value\":\"Seaman's Hat\"},{\"trait_type\":\"Mouth\",\"value\":\"Rage\"},{\"trait_type\":\"Fur\",\"value\":\"Pink\"},{\"trait_type\":\"Clothes\",\"value\":\"Bandolier\"}]}"
+          },
+          "minterAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x3b66c992860abd1ec94b917e222dca78ad55032f"
+          }
+        },
+        "required": [
+          "tokenAddress",
+          "tokenId",
+          "amount",
+          "ownerOf",
+          "tokenHash",
+          "blockNumberMinted",
+          "blockNumber",
+          "contractType",
+          "name",
+          "symbol",
+          "metadata",
+          "minterAddress"
+        ]
+      },
+      "OwnersModel": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageNumber": {
+            "type": "number",
+            "readOnly": true,
+            "example": 1
+          },
+          "pageSize": {
+            "type": "number",
+            "readOnly": true,
+            "example": 100
+          },
+          "network": {
+            "type": "string",
+            "readOnly": true,
+            "example": "ETHEREUM",
+            "enum": [
+              "ETHEREUM",
+              "GOERLI",
+              "SEPOLIA",
+              "BSC",
+              "POLYGON",
+              "MUMBAI",
+              "BSC TESTNET",
+              "AVALANCHE",
+              "AVALANCHE TESTNET",
+              "FANTOM",
+              "CRONOS",
+              "CRONOS TESTNET",
+              "PALM",
+              "ARBITRUM"
+            ]
+          },
+          "cursor": {
+            "type": "string",
+            "readOnly": true
+          },
+          "owners": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OwnersResultModel"
+            }
+          }
+        },
+        "required": [
+          "total",
+          "pageNumber",
+          "pageSize",
+          "network",
+          "cursor",
+          "owners"
+        ]
+      },
+      "TradePriceModel": {
+        "type": "object",
+        "properties": {
+          "transactionHash": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x0c930abb13c9b283bf73cdb979c8cb936bdf6189177d6f95beb892f66dc817fc"
+          },
+          "blockTimestamp": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2022-11-01T02:46:23.000Z"
+          },
+          "blockHash": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x002096fc3b09e3b3c00fdb1d5c08cf20b442e5a99d15bdedc73ba3a2558ea132"
+          },
+          "blockNumber": {
+            "type": "string",
+            "readOnly": true,
+            "example": "15872306"
+          },
+          "tokenIds": {
+            "readOnly": true,
+            "example": [
+              "7567"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sellerAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0xd279e2dd092835061fc6758d051bd78873ec7622"
+          },
+          "buyerAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x00000003dff73965674dbcc9dfcec53e1789ed50"
+          },
+          "tokenAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"
+          },
+          "marketplaceAddress": {
+            "type": "string",
+            "readOnly": true,
+            "example": "0x00000000006c3852cbef3e08e8df289169ede581"
+          },
+          "price": {
+            "type": "string",
+            "readOnly": true,
+            "example": "68100000000000000000"
+          }
+        },
+        "required": [
+          "transactionHash",
+          "blockTimestamp",
+          "blockHash",
+          "blockNumber",
+          "tokenIds",
+          "sellerAddress",
+          "buyerAddress",
+          "tokenAddress",
+          "marketplaceAddress",
+          "price"
+        ]
+      }
+    }
+  }
+}

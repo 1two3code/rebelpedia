@@ -1,0 +1,28 @@
+@uri={{infura-nft-uri}}
+
+
+### Rebelbots Token Metadata
+@chainId={{chain_main}}
+@tokenAddress={{addy_rebelbots}}
+@tokenId=9309
+GET {{uri}}/networks/{{chainId}}/nfts/{{tokenAddress}}/tokens/{{tokenId}}
+Authorization: Basic {{key}}:{{secret}}
+
+
+### FightBots Example
+GET {{uri}}/networks/{{chain_polygon}}/nfts/{{addy_fightbots}}/tokens/56078
+Authorization: Basic {{key}}:{{secret}}
+
+
+### Lands Example
+GET {{uri}}/networks/{{chain_polygon}}/nfts/{{addy_lands}}/tokens/43782
+Authorization: Basic {{key}}:{{secret}}
+
+
+
+
+### NFT Collection Metadata
+@chainId={{chain_main}}
+@tokenAddress={{addy_rebelbots}}
+GET {{uri}}/networks/{{chainId}}/nfts/{{tokenAddress}}
+Authorization: Basic {{key}}:{{secret}}
