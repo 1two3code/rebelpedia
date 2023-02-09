@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "runtimeVersion": "18.14.0",
+      "request": "launch",
+      "name": "scripts/ts",
+      "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+      "args": [
+        "-r",
+        "tsconfig-paths/register",
+        "code/scripts/ts/${fileBasename}"
+      ],
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

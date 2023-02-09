@@ -1,10 +1,11 @@
 {
-  "name": "wis",
+  "name": "Rebelpedia",
   "version": "1.0.0",
-  "description": "World in Shamblers Monorepo",
+  "description": "Rebelpedia Monorepo",
   "directories": {
     "doc": "docs"
   },
+  "engines": {"node": "18.14.0"},
   "scripts": {
     "build-docs": "mkdocs build",
     "serve-docs": "mkdocs serve"
@@ -21,6 +22,11 @@
   },
   "homepage": "https://github.com/1two3code-rebelpedia#readme",
   "devDependencies": {
-    "http-server": "^14.1.0"
+    "@infura/sdk": "^2.1.5",
+    "@types/node": "^18.13.0",
+    "http-server": "^14.1.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.2",
+    "typescript": "^4.9.5"
   }
 }

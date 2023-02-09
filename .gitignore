@@ -7,3 +7,5 @@ node_modules
 cdk.out
 site
 .venv
+.env
+code/scripts/assets
