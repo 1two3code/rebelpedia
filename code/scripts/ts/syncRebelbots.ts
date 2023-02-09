@@ -31,19 +31,50 @@ async function downloadImage(folder: string, uri: string) {
   await writeFile(join(folder, basename(uri)), buffer);
 }
 
+
+
 async function main() {
+  
 
-  // Sync all data from rebelbots with local assets folder
+  // Download all abilities
+  const abilities = await (await fetch('https://cdn.rebelbots.com/cards/keywords.json?refresh')).json() as any;
+  await writeFile(join(dataFolder, 'abilities.json'), JSON.stringify(abilities))
 
-  // const { default: fetch } = await import('node-fetch');
+  // Download all passive skills
+  const [industrial, engineer, military] = [
+    ['shielded', 'resistant', 'tactical', 'well-equipped'],
+    ['aftermath', 'regeneration', 'agile', 'aggressive'],
+    ['adaptable', 'amass', 'tough', 'charged']
+  ];
+  const passives = [...industrial, ...engineer, ...military];
 
+  // Download passive skills icons
+  for (let i = 1; i < passives.length + 1; i++) {
+    console.log(`Downloading passive skill icons ${i}`)
+    await downloadImage(join(imageFolder, 'passives'), `https://cdn.rebelbots.com/cards/passiveskills/${passives[i]}.png`)
+  }
 
+  const numKingdomCards= 6;
+  const kingdomCards = [];
+  const kingdomCardsStartIndex = 400
 
-  // for each CARD
-  //   Update partURI and cardURI to the local one
+  // Download all Kingdom cards data
+  for (let i = 1; i < numKingdomCards + 1; i++) {
+    console.log(`Downloading Kingdom card ${i}`)
+    const card = await (await fetch(`https://cdn.rebelbots.com/cards/${kingdomCardsStartIndex + i}.json`)).json() as any;
+    kingdomCards.push(card);
+  }
+  await writeFile(join(dataFolder, 'kingdomCards.json'), JSON.stringify(kingdomCards))
 
+  // Download all Kingdom card images
+  for (let i = 0; i < kingdomCards.length; i++) {
+    console.log(`Downloading kingdom card image ${basename(kingdomCards[i].cardURI)}`)
+    await downloadImage(join(imageFolder, 'kingdomCards'), kingdomCards[i].cardURI)
+  }
+  
   const numCards = 300;
   const cards = [];
+  // Download all card data
   for (let i = 1; i < numCards + 1; i++) {
     console.log(`Downloading card ${i}`)
     const card = await (await fetch(`https://cdn.rebelbots.com/cards/${i}.json`)).json() as any;
@@ -52,29 +83,18 @@ async function main() {
 
   await writeFile(join(dataFolder, 'cards.json'), JSON.stringify(cards))
 
-  // for each unique "partURI"
-  //   download image assets/images/parts
+  // Download all part images
   const partUris = Array.from(new Set(cards.map(c => c.partURI)));
   for (let i = 0; i < partUris.length; i++) {
-    console.log(`Downloading image ${basename(partUris[i])}`)
+    console.log(`Downloading part image ${basename(partUris[i])}`)
     await downloadImage(join(imageFolder, 'parts'), partUris[i])
-    // await new Promise(r => setTimeout(r, 20));
   }
-  
-  // for each "cardURI"
-  //   download image into assets/images/cards
-  
+
+  // Download all card images
   for (let i = 0; i < cards.length; i++) {
-    console.log(`Downloading image ${basename(cards[i].cardURI)}`)
+    console.log(`Downloading card image ${basename(cards[i].cardURI)}`)
     await downloadImage(join(imageFolder, 'cards'), cards[i].cardURI)
-    // await new Promise(r => setTimeout(r, 20));
   }
-
-
-  // const dir = dirname('https://cdn.rebelbots.com/cards/cards/v1_l_mil5_legs.png');
-  // const base = basename('https://cdn.rebelbots.com/cards/cards/v1_l_mil5_legs.png');
-  // console.log(dir)
-
 }
 
 main();
