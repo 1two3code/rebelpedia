@@ -1,6 +1,6 @@
 import * as nftPolygon from "../../assets/data/hasse.eth.json";
 import { assetToBot } from "../../integrations/infura";
-import { botToCards } from "../../integrations/rebelbots";
+import { botToDeck } from "../../integrations/rebelbots";
 import { Deck } from "../Deck/Deck";
 import { FighterBot } from "../FighterBot/FighterBot";
 import "./Scrapyard.scss";
@@ -23,7 +23,7 @@ function App() {
         value="0xaaa3020504b41dfbfb04abffcbfe0e7eb83c6ed9"
       />
       <FighterBot bot={bot} />
-      <Deck cards={botToCards(bot)} />
+      <Deck cards={botToDeck(bot)} />
     </div>
   );
 }

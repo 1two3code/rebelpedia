@@ -6,7 +6,9 @@ type DeckProps = {
 export const Deck = ({ cards }: DeckProps) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      {cards[0].part}
+      {cards.map((card) => (
+        <img src={card.cardURI} alt={card.cardName} />
+      ))}
     </div>
   );
 };

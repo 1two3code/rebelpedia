@@ -1,3 +1,6 @@
+import * as jsonCards from "../assets/data/cards.json";
+
+const cards = [...jsonCards];
 export namespace FightingBots {
   export enum Trait {
     Category = "Category",
@@ -133,33 +136,21 @@ export namespace Abilities {
 
 }
 
-export const botToCards = (bot: FightingBots.Bot): Card[] => {
+export const partToCard = (part: Cards.Attribute): Card => {
+  const card = (cards as Card[]).find(card => card.cardName === part.value)
 
-  // for each of bot.attributes ~
+  if (!card) {
+    throw new Error('Card not found!')
+  }
+  return card;
+}
 
-  return [{
-    cardID: 1,
-    part: Cards.Part.RightArm,
-    partURI: "https://cdn.rebelbots.com/cards/parts/v1_ind1_right_arm.png",
-    cardURI: "https://cdn.rebelbots.com/cards/cards/v1_c_ind1_right_arm.png",
-    rarity: FightingBots.Traits.Rarity.Common,
-    cardName: "Knock-Knock",
-    type: Cards.Type.Industrial,
-    attack: Cards.Attack.Melee,
-    cost: 3,
-    abilities: [
-      "Relocate",
-      "Deal-Damage"
-    ],
-    damage: 60,
-    shiled: 0,
-    repair: 0,
-    target: [
-      Cards.Target.Self,
-      Cards.Target.First
-    ],
-    cardDescription: "Relocate self and attack closest enemy.",
-    tooltip: "Attack type: Melee. Cost: 3. Damage: 60. Targeting squence: self, first",
-    artID: "ind1_right_arm"
-  }]
+export const botToDeck = (bot: FightingBots.Bot): Card[] => {
+  return [
+    partToCard(bot.attributes.Head),
+    partToCard(bot.attributes.Torso),
+    partToCard(bot.attributes.LeftArm),
+    partToCard(bot.attributes.RightArm),
+    partToCard(bot.attributes.Feet),
+  ]
 }
