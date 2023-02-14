@@ -1,7 +1,7 @@
-import { RebelBots } from "../../integrations/rebelbots";
+import { FightingBots } from "../../integrations/rebelbots";
 
 type CardProps = {
-  bot: RebelBots.FightingBots.Bot;
+  bot: FightingBots.Bot;
 };
 export const Card = ({ bot }: CardProps) => {
   return (

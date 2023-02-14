@@ -1,7 +1,7 @@
-import { RebelBots } from "../../integrations/rebelbots";
+import { Card } from "../../integrations/rebelbots";
 
 type DeckProps = {
-  cards: RebelBots.Card[];
+  cards: Card[];
 };
 export const Deck = ({ cards }: DeckProps) => {
   return (

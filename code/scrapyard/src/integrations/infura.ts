@@ -1,4 +1,4 @@
-import { RebelBots } from "./rebelbots";
+import { FightingBots, Cards } from "./rebelbots";
 
 type InfuraAsset = {
   tokenId: string;
@@ -6,29 +6,29 @@ type InfuraAsset = {
     name: string;
     image?: string;
     description: string;
-    attributes?: RebelBots.Cards.Attribute[];
+    attributes?: Cards.Attribute[];
   } | null;
 };
 
 const botAttributeTraitsMap = new Map<
-  RebelBots.FightingBots.Trait,
-  RebelBots.FightingBots.Traits.Types
+  FightingBots.Trait,
+  FightingBots.Traits.Types
 >([
-  [RebelBots.FightingBots.Trait.Category, "Category"],
-  [RebelBots.FightingBots.Trait.PassiveSkill, "PassiveSkill"],
-  [RebelBots.FightingBots.Trait.Head, "Head"],
-  [RebelBots.FightingBots.Trait.Torso, "Torso"],
-  [RebelBots.FightingBots.Trait.LeftArm, "LeftArm"],
-  [RebelBots.FightingBots.Trait.RightArm, "RightArm"],
-  [RebelBots.FightingBots.Trait.Feet, "Feet"]
+  [FightingBots.Trait.Category, "Category"],
+  [FightingBots.Trait.PassiveSkill, "PassiveSkill"],
+  [FightingBots.Trait.Head, "Head"],
+  [FightingBots.Trait.Torso, "Torso"],
+  [FightingBots.Trait.LeftArm, "LeftArm"],
+  [FightingBots.Trait.RightArm, "RightArm"],
+  [FightingBots.Trait.Feet, "Feet"]
 ]);
 
-export const assetToBot = (infuraAsset: InfuraAsset) => {
+export const assetToBot = (infuraAsset: InfuraAsset): FightingBots.Bot => {
   const attributes = Array.from(botAttributeTraitsMap).reduce((attributes, [infuraAttribute, botAttribute]) => {
     const atr = infuraAsset?.metadata?.attributes?.find(a => a?.trait_type === infuraAttribute)
-    attributes[botAttribute] = { value: atr?.value, rarity: atr?.rarity }
+    attributes[botAttribute] = atr!;
     return attributes;
-  }, {} as unknown as any);
+  }, {} as unknown as FightingBots.BotAttributes);
 
   return {
     id: parseInt(infuraAsset?.tokenId || '0', 10),
