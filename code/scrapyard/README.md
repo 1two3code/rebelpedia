@@ -9,5 +9,4 @@ Features:
 
 ### TODOs
 
-- [ ] Input box for public addy
-  - [ ] Fetch bots using infura NFT API
+- [ ] Display bot attributes as a Cards
