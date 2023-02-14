@@ -19,6 +19,11 @@ GET {{uri}}/networks/{{chain_polygon}}/nfts/{{addy_lands}}/tokens/43782
 Authorization: Basic {{key}}:{{secret}}
 
 
+@wallet=0xaaa3020504b41dfbfb04abffcbfe0e7eb83c6ed9
+### Wallet Example
+GET {{uri}}/networks/{{chain_polygon}}/accounts/{{wallet}}/assets/nfts
+Authorization: Basic {{key}}:{{secret}}
+Accept: application/json
 
 
 ### NFT Collection Metadata
