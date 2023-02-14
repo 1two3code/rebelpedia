@@ -1,8 +1,12 @@
 import { RebelBots } from "../../integrations/rebelbots";
 
 type DeckProps = {
-  bot: RebelBots.FightingBots.Bot;
+  cards: RebelBots.Card[];
 };
-export const Deck = ({ bot }: DeckProps) => {
-  return <div style={{ display: "flex", flexDirection: "column" }}></div>;
+export const Deck = ({ cards }: DeckProps) => {
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {cards[0].part}
+    </div>
+  );
 };

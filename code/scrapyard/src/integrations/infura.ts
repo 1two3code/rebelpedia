@@ -1,5 +1,4 @@
 import { RebelBots } from "./rebelbots";
-import { Attribute } from "./rebelbots/Card";
 
 type InfuraAsset = {
   tokenId: string;
@@ -7,7 +6,7 @@ type InfuraAsset = {
     name: string;
     image?: string;
     description: string;
-    attributes?: Attribute[];
+    attributes?: RebelBots.Cards.Attribute[];
   } | null;
 };
 
@@ -23,7 +22,6 @@ const botAttributeTraitsMap = new Map<
   [RebelBots.FightingBots.Trait.RightArm, "RightArm"],
   [RebelBots.FightingBots.Trait.Feet, "Feet"]
 ]);
-// [x: RebelBots.FightingBots.Traits.Types]: 
 
 export const assetToBot = (infuraAsset: InfuraAsset) => {
   const attributes = Array.from(botAttributeTraitsMap).reduce((attributes, [infuraAttribute, botAttribute]) => {
