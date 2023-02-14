@@ -1,0 +1,9 @@
+.deck {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  > div > img {
+    max-width: 20vw;
+  }
+}

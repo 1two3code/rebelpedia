@@ -14,14 +14,14 @@ const botAssets = assets?.filter(
 const bot = assetToBot(botAssets[0] as any);
 function App() {
   return (
-    <div className="App">
+    <div className="scrapyard">
       <h1>Scrapyard</h1>
-      <div>Instructions and stuff here probably</div>
+      {/* <div>Instructions and stuff here probably</div>
       <input
         type="text"
         placeholder="Temporary until Web3 is integrated"
         value="0xaaa3020504b41dfbfb04abffcbfe0e7eb83c6ed9"
-      />
+      /> */}
       <FighterBot bot={bot} />
       <Deck cards={botToDeck(bot)} />
     </div>

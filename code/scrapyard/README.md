@@ -9,4 +9,7 @@ Features:
 
 ### TODOs
 
-- [ ] Display bot attributes as a Cards
+- [ ] Styling
+  - [ ] Scrapyard
+  - [ ] FighterBot
+  - [ ] Deck

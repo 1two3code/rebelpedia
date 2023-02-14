@@ -1,6 +1,6 @@
 import * as jsonCards from "../assets/data/cards.json";
 
-const cards = [...jsonCards];
+const cards = Array.from(jsonCards);
 export namespace FightingBots {
   export enum Trait {
     Category = "Category",
@@ -100,7 +100,6 @@ export namespace Cards {
     value: string;
     rarity?: FightingBots.Traits.Rarity;
   }
-
 }
 
 export type Ability = {
@@ -133,11 +132,10 @@ export namespace Abilities {
     Empty = "",
     WhenUsed = "WHEN_USED",
   }
-
 }
 
 export const partToCard = (part: Cards.Attribute): Card => {
-  const card = (cards as Card[]).find(card => card.cardName === part.value)
+  const card = (cards as unknown as Card[]).find(card => card.cardName === part.value)
 
   if (!card) {
     throw new Error('Card not found!')

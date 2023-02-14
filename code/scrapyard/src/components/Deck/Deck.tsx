@@ -1,13 +1,16 @@
 import { Card } from "../../integrations/rebelbots";
+import "./Deck.scss";
 
 type DeckProps = {
   cards: Card[];
 };
 export const Deck = ({ cards }: DeckProps) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className="deck">
       {cards.map((card) => (
-        <img src={card.cardURI} alt={card.cardName} />
+        <div key={card.cardID}>
+          <img src={card.cardURI} alt={card.cardName} />
+        </div>
       ))}
     </div>
   );

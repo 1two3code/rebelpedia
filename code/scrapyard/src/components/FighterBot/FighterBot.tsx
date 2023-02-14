@@ -1,17 +1,14 @@
 import { FightingBots } from "../../integrations/rebelbots";
+import "./FighterBot.scss";
 
 type FigtherBotProps = {
   bot: FightingBots.Bot;
 };
 export const FighterBot = ({ bot }: FigtherBotProps) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div>{bot.id}</div>
-      <div>{bot.name}</div>
-      <div>{bot.description}</div>
+    <div className="fighter-bot">
+      <h2>{bot.name}</h2>
       <img src={bot.image} alt={bot.name} />
-      <div>{bot.attributes.Head.value}</div>
-      <div>{bot.attributes.Head.rarity}</div>
     </div>
   );
 };
