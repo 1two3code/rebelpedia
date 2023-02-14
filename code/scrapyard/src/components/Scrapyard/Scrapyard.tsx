@@ -19,7 +19,7 @@ function App() {
         placeholder="Temporary until Web3 is integrated"
         value="0xaaa3020504b41dfbfb04abffcbfe0e7eb83c6ed9"
       />
-      <FighterBot bot={assetToBot(botAssets[0])} />
+      <FighterBot bot={assetToBot(botAssets[0] as any)} />
     </div>
   );
 }

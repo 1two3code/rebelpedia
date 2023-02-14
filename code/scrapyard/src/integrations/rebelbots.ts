@@ -1,9 +1,26 @@
+import { Attribute } from "./rebelbots/Card"
+
 export namespace RebelBots {
-  export namespace FigthingBots {
+  export namespace FightingBots {
+
+    export enum Trait {
+      Category = "Category",
+      Feet = "Feet",
+      Head = "Head",
+      LeftArm = "Left arm",
+      PassiveSkill = "Passive skill",
+      RightArm = "Right arm",
+      Torso = "Torso",
+    }
     export namespace Traits {
-      export type Types = 'Category' | 'Passive skill' | 'Head' | 'Torso' | 'Left arm' | 'Right arm' | 'Feet'
+      export type Types = keyof typeof Trait;
       export type Category = 'INDUSTRIAL' | 'MILITARY' | 'ENGINEER'
-      export type Rarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
+      export enum Rarity {
+        Common = "common",
+        Epic = "epic",
+        Legendary = "legendary",
+        Rare = "rare",
+      }
     }
 
     export type Bot = {
@@ -11,7 +28,7 @@ export namespace RebelBots {
       name: string,
       image: string,
       description: string,
-      attributes: any
+      attributes: { [x in Traits.Types]: Attribute }
     }
   }
 }

@@ -1,4 +1,5 @@
 import { RebelBots } from "./rebelbots";
+import { Attribute } from "./rebelbots/Card";
 
 type InfuraAsset = {
   tokenId: string;
@@ -6,25 +7,21 @@ type InfuraAsset = {
     name: string;
     image?: string;
     description: string;
-    attributes?: Array<{
-      trait_type: string;
-      value: string | number;
-      rarity?: string;
-    }> | null;
+    attributes?: Attribute[];
   } | null;
 };
 
 const botAttributeTraitsMap = new Map<
-  RebelBots.FigthingBots.Traits.Types,
-  string
+  RebelBots.FightingBots.Trait,
+  RebelBots.FightingBots.Traits.Types
 >([
-  ["Category", "category"],
-  ["Passive skill", "passive_skill"],
-  ["Head", "head"],
-  ["Torso", "torso"],
-  ["Left arm", "left_arm"],
-  ["Right arm", "right_arm"],
-  ["Feet", "fett"],
+  [RebelBots.FightingBots.Trait.Category, "Category"],
+  [RebelBots.FightingBots.Trait.PassiveSkill, "PassiveSkill"],
+  [RebelBots.FightingBots.Trait.Head, "Head"],
+  [RebelBots.FightingBots.Trait.Torso, "Torso"],
+  [RebelBots.FightingBots.Trait.LeftArm, "LeftArm"],
+  [RebelBots.FightingBots.Trait.RightArm, "RightArm"],
+  [RebelBots.FightingBots.Trait.Feet, "Feet"]
 ]);
 // [x: RebelBots.FightingBots.Traits.Types]: 
 

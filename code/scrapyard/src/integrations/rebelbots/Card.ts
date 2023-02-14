@@ -1,9 +1,11 @@
+import { RebelBots } from "../rebelbots";
+
 export type Card = {
   cardID: number;
   part: Part;
   partURI: string;
   cardURI: string;
-  rarity: Rarity;
+  rarity: RebelBots.FightingBots.Traits.Rarity;
   cardName: string;
   type: Type;
   attack: Attack;
@@ -32,13 +34,6 @@ export enum Part {
   Torso = "Torso",
 }
 
-export enum Rarity {
-  Common = "common",
-  Epic = "epic",
-  Legendary = "legendary",
-  Rare = "rare",
-}
-
 export enum Target {
   All = "all",
   First = "first",
@@ -58,4 +53,17 @@ export enum Type {
   Engineer = "Engineer",
   Industrial = "Industrial",
   Military = "Military",
+}
+
+export interface Metadata {
+  name: string;
+  image: string;
+  description: string;
+  attributes: Attribute[];
+}
+
+export interface Attribute {
+  trait_type: RebelBots.FightingBots.Trait;
+  value: string;
+  rarity?: RebelBots.FightingBots.Traits.Rarity;
 }
