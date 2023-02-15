@@ -1,6 +1,6 @@
 import { FightingBots, Cards } from "./rebelbots";
 
-type InfuraAsset = {
+export type InfuraAsset = {
   tokenId: string;
   metadata: {
     name: string;
