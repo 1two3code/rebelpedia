@@ -8,8 +8,8 @@ type DeckProps = {
 export const Deck = ({ cards }: DeckProps) => {
   return (
     <div className="deck">
-      {cards.map((card) => (
-        <Card key={card.cardID} card={card} />
+      {cards.map((card, i) => (
+        <Card key={`${card.cardID}_${i}`} card={card} />
       ))}
     </div>
   );

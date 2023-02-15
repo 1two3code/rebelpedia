@@ -12,15 +12,12 @@ const botAssets = assets?.filter(
 ) as InfuraAsset[];
 const bots = botAssets.map(assetToBot);
 
+const cards = bots.flatMap((bot) => botToDeck(bot));
 function Scrapyard() {
   return (
     <div className="scrapyard">
       <h1>Scrapyard</h1>
-      <div>
-        {bots.map((bot) => (
-          <Deck key={bot.id} cards={botToDeck(bot)} />
-        ))}
-      </div>
+      <Deck cards={cards} />
     </div>
   );
 }
