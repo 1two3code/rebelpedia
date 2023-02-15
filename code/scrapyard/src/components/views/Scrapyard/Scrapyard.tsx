@@ -3,7 +3,7 @@ import { assetToBot, InfuraAsset } from "../../../integrations/infura";
 import { botToDeck } from "../../../integrations/rebelbots";
 import { Deck } from "../../Deck/Deck";
 import "./Scrapyard.scss";
-import { sortByRarity } from "./sorting";
+import { sortByAttackType, sortByRarity } from "./sorting";
 
 const figtherBotContract = "0x17892c8c3eb60c144872c18f013626471c3658bf";
 
@@ -14,10 +14,12 @@ const botAssets = assets?.filter(
 const cards = botAssets.map(assetToBot).flatMap((bot) => botToDeck(bot));
 
 const Scrapyard = () => {
+  const sortFunction =
+    sortByAttackType("ascending") || sortByRarity("descending");
   return (
     <div className="scrapyard">
       <h1>Scrapyard</h1>
-      <Deck cards={cards.sort(sortByRarity("descending"))} />
+      <Deck cards={cards.sort(sortFunction)} />
     </div>
   );
 };

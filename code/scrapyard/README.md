@@ -21,7 +21,11 @@ Rebelpedia Scrapyard Deck Builder
 - [ ] [Allow Infura only from rebelpedia.com](https://app.infura.io/dashboard/ethereum/f7d34fcc246c4b1c8373e27d11c232a7/settings) ~
 
 ### Scrapyard
-- [ ] Sort by: rarity/type/etc. ~
+- [ ] Free text fuzzy search
+- [ ] Sort by:
+  - [x] rarity
+  - [ ] part
+  - [ ] ...etc. ~
 
 ### Factory
 - [ ] Render FightingBot using all their parts
