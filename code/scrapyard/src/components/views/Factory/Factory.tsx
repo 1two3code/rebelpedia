@@ -13,7 +13,7 @@ const botAssets = assets?.filter(
 );
 const bot = assetToBot(botAssets[0] as any);
 
-function Factory() {
+const Factory = () => {
   return (
     <div className="factory">
       <h1>Factory</h1>
@@ -28,6 +28,6 @@ function Factory() {
       <Deck cards={botToDeck(bot)} />
     </div>
   );
-}
+};
 
 export default Factory;
