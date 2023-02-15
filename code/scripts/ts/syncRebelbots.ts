@@ -51,17 +51,17 @@ const stepAbilities = async () => {
 /**
  * Download passive skill definitions and icons
  */
-const stepPassives = async () => {
+const stepPassiveSkills = async () => {
   const [industrial, engineer, military] = [
     ['shielded', 'resistant', 'tactical', 'well-equipped'],
     ['aftermath', 'regeneration', 'agile', 'aggressive'],
     ['adaptable', 'amass', 'tough', 'charged']
   ];
-  const passives = [...industrial, ...engineer, ...military];
+  const passiveSkills = [...industrial, ...engineer, ...military];
 
-  for (let i = 1; i < passives.length + 1; i++) {
+  for (let i = 1; i < passiveSkills.length + 1; i++) {
     console.log(`Downloading passive skill icons ${i}`)
-    await downloadImage(join(imageFolder, 'passives'), `https://cdn.rebelbots.com/cards/passiveskills/${passives[i]}.png`)
+    await downloadImage(join(imageFolder, 'passiveskills'), `https://cdn.rebelbots.com/cards/passiveskills/${passiveSkills[i]}.png`)
   }
 }
 
@@ -114,7 +114,7 @@ const stepCardsAndParts = async () => {
 
 async function main() {
   await stepAbilities();
-  // await stepPassives();
+  // await stepPassiveSkills();
   // await stepKingdomCards();
   // await stepCardsAndParts();
 

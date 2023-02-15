@@ -18,7 +18,7 @@ function Factory() {
       <h1>Factory</h1>
       <div>
         {bots.map((bot) => (
-          <Deck cards={botToDeck(bot)} />
+          <Deck key={bot.id} cards={botToDeck(bot)} />
         ))}
       </div>
     </div>

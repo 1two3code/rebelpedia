@@ -9,4 +9,9 @@ Features:
 
 ### TODOs
 
-- [ ] "Full Deck" for all Parts
+- [ ] Use local images
+- [ ] Render FightingBot using all their parts
+        instead of the pre-generated image
+
+- [ ] Write some basic tests for components
+- [ ] imagemagick png to webp

@@ -1,4 +1,5 @@
 import * as jsonCards from "../assets/data/cards.json";
+import { join } from 'path-browserify';
 
 const cards = Array.from(jsonCards);
 export namespace FightingBots {
@@ -151,4 +152,17 @@ export const botToDeck = (bot: FightingBots.Bot): Card[] => {
     partToCard(bot.attributes.RightArm),
     partToCard(bot.attributes.Feet),
   ]
+}
+
+export const cdnToLocal = (cdnURI: string): string => {
+  const localRoot = `images`;
+
+  const [, dir, image] = cdnURI.match(/https:\/\/cdn\.rebelbots.com\/cards\/(.+?)\/(.+)/) || [];
+
+  let localDir = dir;
+  if (dir === 'keywords') {
+    localDir = 'abilities';
+  }
+
+  return join(localRoot, localDir, image)
 }

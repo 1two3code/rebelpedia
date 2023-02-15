@@ -1,16 +1,15 @@
-import { Card } from "../../integrations/rebelbots";
+import { Card as CardType } from "../../integrations/rebelbots";
+import { Card } from "./Card";
 import "./Deck.scss";
 
 type DeckProps = {
-  cards: Card[];
+  cards: CardType[];
 };
 export const Deck = ({ cards }: DeckProps) => {
   return (
     <div className="deck">
       {cards.map((card) => (
-        <div key={card.cardID}>
-          <img src={card.cardURI} alt={card.cardName} />
-        </div>
+        <Card key={card.cardID} card={card} />
       ))}
     </div>
   );

@@ -1,17 +1,14 @@
-import { FightingBots } from "../../integrations/rebelbots";
+import { Card as CardType, cdnToLocal } from "../../integrations/rebelbots";
+import "./Card.scss";
 
 type CardProps = {
-  bot: FightingBots.Bot;
+  card: CardType;
 };
-export const Card = ({ bot }: CardProps) => {
+
+export const Card = ({ card }: CardProps) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div>{bot.id}</div>
-      <div>{bot.name}</div>
-      <div>{bot.description}</div>
-      <img src={bot.image} />
-      <div>{bot.attributes.Head.value}</div>
-      <div>{bot.attributes.Head.rarity}</div>
+    <div className="card">
+      <img src={cdnToLocal(card.cardURI)} alt={card.cardName} />
     </div>
   );
 };
