@@ -1,8 +1,8 @@
-import * as nftPolygon from "../../assets/data/hasse.eth.json";
-import { assetToBot } from "../../integrations/infura";
-import { botToDeck } from "../../integrations/rebelbots";
-import { Deck } from "../Deck/Deck";
-import { FighterBot } from "../FighterBot/FighterBot";
+import * as nftPolygon from "../../../assets/data/hasse.eth.json";
+import { assetToBot } from "../../../integrations/infura";
+import { botToDeck } from "../../../integrations/rebelbots";
+import { Deck } from "../../Deck/Deck";
+import { FighterBot } from "../../FighterBot/FighterBot";
 import "./Scrapyard.scss";
 
 const figtherBotContract = "0x17892c8c3eb60c144872c18f013626471c3658bf";
@@ -12,7 +12,8 @@ const botAssets = assets?.filter(
   (asset) => asset.contract === figtherBotContract
 );
 const bot = assetToBot(botAssets[0] as any);
-function App() {
+
+function Scrapyard() {
   return (
     <div className="scrapyard">
       <h1>Scrapyard</h1>
@@ -28,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default Scrapyard;

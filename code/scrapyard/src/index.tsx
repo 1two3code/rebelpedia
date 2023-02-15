@@ -1,15 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { HashRouter, Route, Routes, Link } from "react-router-dom";
 import "./index.scss";
-import Scrapyard from "./components/Scrapyard/Scrapyard";
+import Scrapyard from "./components/views/Scrapyard/Scrapyard";
 import reportWebVitals from "./reportWebVitals";
+import Factory from "./components/views/Factory/Factory";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Scrapyard />
+    <HashRouter>
+      <nav>
+        <Link to="/">Factory</Link>
+        <Link to="scrapyard">Scrapyard</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Factory />} />
+        <Route path="/scrapyard" element={<Scrapyard />} />
+      </Routes>
+    </HashRouter>
   </React.StrictMode>
 );
 

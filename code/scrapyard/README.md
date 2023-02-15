@@ -9,7 +9,4 @@ Features:
 
 ### TODOs
 
-- [ ] Styling
-  - [ ] Scrapyard
-  - [ ] FighterBot
-  - [ ] Deck
+- [ ] "Full Deck" for all Parts
